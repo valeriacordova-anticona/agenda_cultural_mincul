@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda Cultural – Análisis de Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 60%;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Agenda Cultural – Análisis Exploratorio</h1>
+
+    <p>
+        Este sitio presenta los resultados de un ejercicio de
+        <strong>extracción y procesamiento de datos</strong> realizado
+        como parte del curso <em>Extracción y Procesamiento de Datos</em>
+        (Media Lab – PUCP).
+    </p>
+
+    <p>
+        Los datos fueron obtenidos mediante <strong>scraping estático</strong>
+        de una agenda cultural y procesados con Python para identificar
+        patrones básicos en los títulos de las actividades.
+    </p>
+
+    <h2>📥 Descarga de datasets</h2>
+
+    <ul>
+        <li>
+            <a href="../data/raw_agenda.csv" download>
+                📄 Dataset original (scraping)
+            </a>
+        </li>
+        <li>
+            <a href="../data/agenda_cultura_procesada.csv" download>
+                📄 Dataset procesado (longitud de títulos)
+            </a>
+        </li>
+        <li>
+            <a href="../data/top_palabras_titulos.csv" download>
+                📄 Top palabras en títulos
+            </a>
+        </li>
+    </ul>
+
+    <h2>📊 Palabras más frecuentes en la agenda cultural</h2>
+
+    <p>
+        La siguiente tabla muestra las palabras más frecuentes
+        encontradas en los títulos de la agenda cultural,
+        excluyendo palabras vacías (stopwords).
+    </p>
+
+    <table id="tabla-palabras">
+        <thead>
+            <tr>
+                <th>Palabra</th>
+                <th>Conteo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas generadas con JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Cargar el CSV de top palabras
+        fetch("../data/top_palabras_titulos.csv")
+            .then(response => response.text())
+            .then(text => {
+                const filas = text.trim().split("\n").slice(1);
+                const tbody = document.querySelector("#tabla-palabras tbody");
+
+                filas.forEach(fila => {
+                    const [palabra, conteo] = fila.split(",");
+                    const tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+                        <td>${palabra}</td>
+                        <td>${conteo}</td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error("Error cargando el CSV:", error);
+            });
+    </script>
+
+</body>
+</html>
