@@ -106,48 +106,46 @@
 
     <h2>Palabras más frecuentes en los titulares</h2>
 
-    <table id="tabla-palabras">
-      <thead>
-        <tr>
-          <th>Palabra</th>
-          <th>Frecuencia</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="2">Cargando datos…</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>
+      La siguiente tabla muestra las palabras más utilizadas en los titulares de las
+noticias del Ministerio de Cultura, luego de un proceso de limpieza básica de texto
+(eliminación de stopwords y signos). Este ranking permite identificar los temas
+que dominan la agenda informativa institucional.
+
+    </p>
+
+
+    <table>
+  <thead>
+    <tr>
+      <th>Palabra</th>
+      <th>Frecuencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>histórico</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>arqueológico</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>2026</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>museo</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>chan</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
 
   </div>
-
-  <script>
-    fetch("../data/top_palabras_titulos.csv")
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("No se pudo cargar el CSV");
-        }
-        return response.text();
-      })
-      .then(text => {
-        const rows = text.trim().split("\n").slice(1);
-        const tbody = document.querySelector("#tabla-palabras tbody");
-        tbody.innerHTML = "";
-
-        rows.forEach(row => {
-          const [palabra, conteo] = row.split(",");
-          const tr = document.createElement("tr");
-          tr.innerHTML = `<td>${palabra}</td><td>${conteo}</td>`;
-          tbody.appendChild(tr);
-        });
-      })
-      .catch(error => {
-        document.querySelector("#tabla-palabras tbody").innerHTML =
-          "<tr><td colspan='2'>Error al cargar los datos</td></tr>";
-        console.error(error);
-      });
-  </script>
-
 </body>
 </html>
