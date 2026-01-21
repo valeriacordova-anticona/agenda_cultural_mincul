@@ -6,70 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    :root {
+      --color-primario: #8c1d18;   /* rojo cultural */
+      --color-secundario: #f3efe8; /* papel */
+      --color-acento: #cfa25a;     /* dorado patrimonial */
+      --color-texto: #2b2b2b;
+      --color-gris: #6b6b6b;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f7f7f7;
+      font-family: "Georgia", "Times New Roman", serif;
+      background: var(--color-secundario);
       margin: 0;
-      padding: 40px;
-      color: #222;
+      padding: 40px 20px;
+      color: var(--color-texto);
     }
 
     .container {
       max-width: 900px;
       margin: auto;
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
+      background: #ffffff;
+      padding: 50px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
     }
 
-    h1 { margin-top: 0; }
-    h2 { margin-top: 40px; }
+    header {
+      border-bottom: 4px solid var(--color-primario);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
 
-    ul { line-height: 1.8; }
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: var(--color-gris);
+      font-size: 1rem;
+    }
+
+    h2 {
+      margin-top: 50px;
+      font-size: 1.5rem;
+      color: var(--color-primario);
+      border-left: 6px solid var(--color-acento);
+      padding-left: 12px;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
 
     a {
-      color: #4b4bff;
+      color: var(--color-primario);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    a:hover { text-decoration: underline; }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background: #faf7f2;
+      padding: 20px;
+      border-left: 6px solid var(--color-acento);
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 25px;
+      font-size: 1rem;
     }
 
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
+    th {
+      background: var(--color-primario);
+      color: white;
+      padding: 12px;
       text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
-    th { background: #f0f0f0; }
-
-    .note {
-      background: #f5f7ff;
-      padding: 15px;
-      border-left: 4px solid #4b4bff;
-      margin-top: 20px;
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
     }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: var(--color-gris);
+      text-align: center;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="container">
 
-    <h1>Agenda informativa del Ministerio de Cultura (Perú)</h1>
+    <header>
+      <h1>Agenda informativa del Ministerio de Cultura (Perú)</h1>
+      <p>
+        Análisis exploratorio de titulares institucionales a partir de técnicas de
+        extracción automatizada y procesamiento de texto.
+      </p>
+    </header>
 
     <p>
-      Este sitio presenta un análisis exploratorio de los titulares publicados
-      en la sección de noticias del <b>Ministerio de Cultura del Perú (MINCUL)</b>,
-      a partir de la extracción automatizada y el procesamiento básico de texto.
+      Este sitio presenta un análisis de los titulares publicados en la sección de
+      noticias del <strong>Ministerio de Cultura del Perú (MINCUL)</strong>.
+      A través de scraping estático y procesamiento básico de lenguaje, se identifican
+      patrones temáticos y prioridades informativas de la agenda cultural institucional.
     </p>
 
-    <h2>Fuente</h2>
+    <h2>Fuente oficial</h2>
     <p>
       <a href="https://www.gob.pe/institucion/cultura/noticias" target="_blank">
         https://www.gob.pe/institucion/cultura/noticias
@@ -81,70 +157,70 @@
     <ul>
       <li>
         <a href="https://github.com/valeriacordova-anticona/agenda_cultural_mincul/raw/main/data/raw_agenda.csv">
-          Descargar: raw_agenda.csv
+          raw_agenda.csv – titulares y URLs originales
         </a>
       </li>
-
       <li>
         <a href="https://github.com/valeriacordova-anticona/agenda_cultural_mincul/raw/main/data/agenda_cultura_procesada.csv">
-          Descargar: agenda_cultura_procesada.csv
+          agenda_cultura_procesada.csv – longitud de titulares
         </a>
       </li>
-
       <li>
         <a href="https://github.com/valeriacordova-anticona/agenda_cultural_mincul/raw/main/data/top_palabras_titulos.csv">
-          Descargar: top_palabras_titulos.csv
+          top_palabras_titulos.csv – ranking léxico
         </a>
       </li>
     </ul>
 
     <div class="note">
-      ℹ️ Los archivos CSV se descargan directamente desde GitHub.
-      Si el navegador los abre como texto, usa clic derecho →
-      <b>“Guardar enlace como…”</b>
+      ℹ️ Los archivos CSV se descargan directamente desde GitHub.  
+      Si el navegador los abre como texto, utiliza clic derecho →
+      <strong>“Guardar enlace como…”</strong>
     </div>
 
     <h2>Palabras más frecuentes en los titulares</h2>
 
     <p>
-      La siguiente tabla muestra las palabras más utilizadas en los titulares de las
-noticias del Ministerio de Cultura, luego de un proceso de limpieza básica de texto
-(eliminación de stopwords y signos). Este ranking permite identificar los temas
-que dominan la agenda informativa institucional.
-
+      El siguiente ranking muestra las palabras más recurrentes en los titulares
+      institucionales del MINCUL, luego de un proceso de limpieza básica del texto
+      (eliminación de stopwords y signos). Este análisis permite identificar los ejes
+      temáticos que estructuran la agenda informativa cultural.
     </p>
 
-
     <table>
-  <thead>
-    <tr>
-      <th>Palabra</th>
-      <th>Frecuencia</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>histórico</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>arqueológico</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>2026</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>museo</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>chan</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th>Palabra</th>
+          <th>Frecuencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>histórico</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>arqueológico</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>2026</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>museo</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>chan</td>
+          <td>4</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      Agenda informativa cultural · Ministerio de Cultura del Perú · GitHub Pages
+    </footer>
 
   </div>
 </body>
