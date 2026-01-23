@@ -24,3 +24,11 @@ python src/scrape.py
 python src/process.py
 
 Website: Los resultados se publican en un sitio web estático disponible a través de GitHub Pages, utilizando la carpeta /docs.
+
+
+Prompt usado (IA)
+Rol: Eres un ingeniero de datos y docente para comunicadores principiantes.
+Contexto: Estoy en un curso de “Extracción y Procesamiento de Datos” (Python). Nunca he usado GitHub. Trabajamos con scraping estático y CSV. Queremos publicar resultados en un website con GitHub Pages usando la carpeta /docs.
+Objetivo: Genera un proyecto con esta estructura: src/, data/, docs/. Crea 2 scripts en Python: (1) scraping de títulos+URLs de una página (requests+bs4) guardando CSV; (2) limpiar y tokenizar el texto, y procesamiento simple (longitud y top palabras) guardando 2 CSV (uno por cada objetivo). Luego crea docs/index.html que muestre links de descarga y una tabla leyendo los 3 CSV: raw_agenda , agenda_cultural_procesada y top_palabras. El URL que usaremos es https://www.gob.pe/institucion/cultura/noticias (Es la agenda de noticias del Ministerio de Cultura del Perú)
+Restricciones: Código comentado, mensajes de éxito/errores claros, sin Selenium, compatible con Windows. Incluye instrucciones paso a paso y troubleshooting (qué revisar si el CSV sale vacío o el Pages no carga).
+Output esperado: Pega el contenido completo de cada archivo: src/scrape.py, src/process.py, docs/index.html, README.md.
